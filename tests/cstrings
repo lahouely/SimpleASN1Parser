@@ -1,0 +1,6 @@
+"a simple Cstring" "And another"
+""
+"Note that multiline Cstrings
+are not yet implemented"
+
+"Double quotes within Cstr""ings are also not yet implemented"
