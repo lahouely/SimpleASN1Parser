@@ -19,6 +19,7 @@ FRACTION                    \.{DIGIT}+
 EXPONENT                    [eE][+-]?{DIGIT}+
 
 SINGLECHARACTERLEXICALITEM  "{"|"}"|"<"|">"|","|"."|"/"|"("|")"|"["|"]"|"-"|":"|"="|"\""|"'"|";"|"@"|"|"|"!"|"^"
+RESERVEDWORD                ABSENT|ENCODED|INTERSECTION|SEQUENCE|ABSTRACT-SYNTAX|ENCODING-CONTROL|ISO646String|SET|ALL|END|MAX|SETTINGS|APPLICATION|ENUMERATED|MIN|SIZE|AUTOMATIC|EXCEPT|MINUS-INFINITY|STRING|BEGIN|EXPLICIT|NOT-A-NUMBER|SYNTAX|BIT|EXPORTS|NULL|T61String|BMPString|EXTENSIBILITY|NumericString|TAGS|BOOLEAN|EXTERNAL|OBJECT|TeletexString|BY|FALSE|ObjectDescriptor|TIME|CHARACTER|FROM|OCTET|TIME-OF-DAY|CHOICE|GeneralizedTime|OF|TRUE|CLASS|GeneralString|OID-IRI|TYPE-IDENTIFIER|COMPONENT|GraphicString|OPTIONAL|UNION|COMPONENTS|IA5String|PATTERN|UNIQUE|CONSTRAINED|IDENTIFIER|PDV|UNIVERSAL|CONTAINING|IMPLICIT|PLUS-INFINITY|UniversalString|DATE|IMPLIED|PRESENT|UTCTime|DATE-TIME|IMPORTS|PrintableString|UTF8String|DEFAULT|INCLUDES|PRIVATE|VideotexString|DEFINITIONS|INSTANCE|REAL|VisibleString|DURATION|INSTRUCTIONS|RELATIVE-OID|WITH|EMBEDDED|INTEGER|RELATIVE-OID-IRI
 
 NUMBER                      [+-]?{INTEGER}
 REALNUMBER                  [+-]?{INTEGER}({FRACTION})?({EXPONENT})?|{INTEGER}\.{DIGIT}+({EXPONENT})?.
@@ -29,9 +30,12 @@ BINARYSTRING                '{BLANK}*([01]{BLANK}*)*'B
 HEXADECIMALSTRING           '{BLANK}*([0-9A-F]{BLANK}*)*'H
 
 
+
 %x DOUBLE_DASH_COMMENT
 %x MULTI_LINE_COMMENT
 %x CSTRING
+
+
 
 %%
 
@@ -52,14 +56,13 @@ HEXADECIMALSTRING           '{BLANK}*([0-9A-F]{BLANK}*)*'H
 
 <INITIAL>"--"		                        {printf("Double dash comment started\n"); yy_push_state(DOUBLE_DASH_COMMENT); }
 <INITIAL>"/*"		                        {printf("Multi line comment started\n"); yy_push_state(MULTI_LINE_COMMENT); }
-<INITIAL>\"                                 {printf("Cstring started\n"); yy_push_state(CSTRING); }
 <INITIAL>"::="                              {printf("Assignment token found: %s\n", yytext); }
 <INITIAL>"..."                              {printf("Ellipsis token found: %s\n", yytext); }
 <INITIAL>".."                               {printf("Range token found: %s\n", yytext); }
 <INITIAL>"[["                               {printf("Left version brackets token found: %s\n", yytext); }
 <INITIAL>"]]"                               {printf("Right version brackets token found: %s\n", yytext); }
 <INITIAL>{SINGLECHARACTERLEXICALITEM}       {printf("Single character token found: %s\n", yytext); }
-
+<INITIAL>{RESERVEDWORD}                     {printf("Reserved word found: %s\n", yytext); }
 
 <INITIAL>{FULLUPPERIDENTIFIER}              {printf("Encoding reference found: %s\n", yytext); }
 <INITIAL>{LOWERIDENTIFIER}                  {printf("Identifier or \"Value refrence\" found: %s\n", yytext); }
