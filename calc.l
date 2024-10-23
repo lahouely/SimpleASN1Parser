@@ -62,7 +62,7 @@ HEXADECIMALSTRING           '{BLANK}*([0-9A-F]{BLANK}*)*'H
 <INITIAL>"[["                               {printf("Left version brackets token found: %s\n", yytext); }
 <INITIAL>"]]"                               {printf("Right version brackets token found: %s\n", yytext); }
 <INITIAL>{SINGLECHARACTERLEXICALITEM}       {printf("Single character token found: %s\n", yytext); }
-<INITIAL>{RESERVEDWORD}                     {printf("Reserved word found: %s\n", yytext); }
+<INITIAL>{RESERVEDWORD}                     {printf("Reserved word found: %s\n", yytext); 
 
 <INITIAL>{FULLUPPERIDENTIFIER}              {printf("Encoding reference found: %s\n", yytext); }
 <INITIAL>{LOWERIDENTIFIER}                  {printf("Identifier or \"Value refrence\" found: %s\n", yytext); }
