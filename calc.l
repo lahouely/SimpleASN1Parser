@@ -29,13 +29,9 @@ FULLUPPERIDENTIFIER         [A-Z]([A-Z0-9]|(-[A-Z0-9]))*
 BINARYSTRING                '{BLANK}*([01]{BLANK}*)*'B
 HEXADECIMALSTRING           '{BLANK}*([0-9A-F]{BLANK}*)*'H
 
-
-
 %x DOUBLE_DASH_COMMENT
 %x MULTI_LINE_COMMENT
 %x CSTRING
-
-
 
 %%
 
@@ -52,8 +48,6 @@ HEXADECIMALSTRING           '{BLANK}*([0-9A-F]{BLANK}*)*'H
 <MULTI_LINE_COMMENT>"*/"                    {printf("Multi line comment ended\n");    yy_pop_state(); return multi_line_comment; }
 <MULTI_LINE_COMMENT><<EOF>>                 {printf("Reached EOF within a multi line comment.\n");        yyerror("reached EOF within a multi line comment.\n"); }
 
-
-
 <INITIAL>"--"		                        {printf("Double dash comment started\n"); yy_push_state(DOUBLE_DASH_COMMENT); }
 <INITIAL>"/*"		                        {printf("Multi line comment started\n"); yy_push_state(MULTI_LINE_COMMENT); }
 <INITIAL>"::="                              {printf("Assignment token found: %s\n", yytext); }
@@ -62,7 +56,7 @@ HEXADECIMALSTRING           '{BLANK}*([0-9A-F]{BLANK}*)*'H
 <INITIAL>"[["                               {printf("Left version brackets token found: %s\n", yytext); }
 <INITIAL>"]]"                               {printf("Right version brackets token found: %s\n", yytext); }
 <INITIAL>{SINGLECHARACTERLEXICALITEM}       {printf("Single character token found: %s\n", yytext); }
-<INITIAL>{RESERVEDWORD}                     {printf("Reserved word found: %s\n", yytext); 
+<INITIAL>{RESERVEDWORD}                     {printf("Reserved word found: %s\n", yytext); }
 
 <INITIAL>{FULLUPPERIDENTIFIER}              {printf("Encoding reference found: %s\n", yytext); }
 <INITIAL>{LOWERIDENTIFIER}                  {printf("Identifier or \"Value refrence\" found: %s\n", yytext); }
@@ -81,4 +75,5 @@ HEXADECIMALSTRING           '{BLANK}*([0-9A-F]{BLANK}*)*'H
 <INITIAL>[^\t\n\v\f\r -]*                   {printf("Ignored unknown token >>>%s<<<\n",yytext); }
 
 %%
+
 int yywrap (void) {return yywrap_counter-->0?1:0;}
