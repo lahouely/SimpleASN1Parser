@@ -1,0 +1,26 @@
+# Object files
+*.o
+*.ko
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Specific files
+lex.yy.c
+y.tab.c
+y.tab.h
+
+# Secret test files
+secret-tests
