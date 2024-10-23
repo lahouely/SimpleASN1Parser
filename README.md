@@ -10,9 +10,9 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 
 To build and run this project, you need the following tools installed on your system:
 
-- **Flex**: A tool for generating scanners (tokenizers), which is required to process the `calc.l` file.
-- **Yacc**: A parser generator that processes the `calc.y` file.
-- **GCC**: A C compiler, like `gcc`, for compiling the generated source files.
+- **Flex**: The scanner generator.
+- **Yacc**: The parser generator.
+- **GCC**: The compiler.
 
 # Build and Run Instructions
 
