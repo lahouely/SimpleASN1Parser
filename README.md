@@ -1,3 +1,5 @@
+**⚠️ This project is a Work in Progress (WIP). Features and functionality may be incomplete or subject to change. Check `Limitations.md` !**
+
 # SimpleASN1Parser
 
 A simple ASN1 parser to be used in the ASN1Sky project.
