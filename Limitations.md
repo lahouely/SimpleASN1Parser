@@ -23,4 +23,5 @@
 
 - Not yet implemented:
   - Multiline "Character strings", only single line "Character strings" are implemented.
-  - Handling for double quotes within "Character strings". 
+  - Handling for double quotes within "Character strings".
+  - Single quotation character lexical item may need a review. ISO/IEC 8824-1:2021 (E) 12.37

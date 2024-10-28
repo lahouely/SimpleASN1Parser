@@ -1,0 +1,4 @@
+Person ::= SEQUENCE {
+    name    INTEGER,
+    age     INTEGER
+}
